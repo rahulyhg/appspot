@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block heading %}{% block title %}නගර ලියාපදිංචි කිරීම {% endblock %}{% endblock %}
+{% block content %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{{event.errors}}
+<form action="" method="post">
+<table>
+<tr><td>රට </td><td> {{location.country}} </td></tr>
+<tr><td>නගරය  </td><td> {{ location.city }} </td></tr>
+<tr>
+	<td>
+		{{ location.latitude_p }}
+		අක්ෂාංශ 
+	</td>
+	<td>
+		{{ location.latitude_dd }}°
+		{{ location.latitude_mm }}′
+		{{ location.latitude_ss }}″
+	</td>
+</tr>
+<tr>
+	<td>
+		{{ location.longitude_p }}
+		දේශාංශ  
+	</td>
+	<td> 
+		{{ location.longitude_dd }}°
+		{{ location.longitude_mm }}′
+		{{ location.longitude_ss }}″
+	</td>
+</tr>
+<tr>
+	<td>වේලා කලාපය </td>
+	<td>
+		{{ location.timezone_p }}
+		{{ location.timezone_dd }}:
+		{{ location.timezone_mm }}
+	</td>
+</tr>
+</table>
+<br />
+<input type="submit" value="ලියාපදිංචි  කරන්න" />
+</form>{% endblock %}

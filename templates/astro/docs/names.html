@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+{% load charttags %}
+{% load tags %}
+{% block heading %}{% block title %}නාම අක්ෂර {% endblock %}{% endblock %}
+{% block content %}
+<div class="heading">ලග්නයට</div>
+<div class="indent">
+<table>
+<tr><td>
+<table cellspacing=0>
+	<thead>
+		<tr>
+			<th>ලග්නය</th>
+			<th>අක්ෂර</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="odd">
+			<th>මේෂ</th>
+			<td>අ ආ ශ</td>
+		</tr>
+		<tr class="even">
+			<th>වෘෂභ</th>
+			<td>ඉ ඊ උ ෂ</td>
+		</tr>
+		<tr class="odd">
+			<th>මිථුන</th>
+			<td>ඌ ඍ ඎ ස</td>
+		</tr>
+		<tr class="even">
+			<th>කටක</th>
+			<td>එ හ</td>
+		</tr>
+		<!--
+		<tr class="odd">
+			<th>සිංහ</th>
+			<td>ඓ ඔ ඕ ළ</td>
+		</tr>
+		<tr class="even">
+			<th>කන්‍යා</th>
+			<td>අං අඃ</td>
+		</tr>
+		<tr class="odd">
+			<th>තුලා</th>
+			<td>ක ඛ ග ඝ ඞ</td>
+		</tr>
+		<tr class="even">
+			<th>වෘශ්චික</th>
+			<td>ච ඡ ජ ඣ ඤ</td>
+		</tr>
+		<tr class="odd">
+			<th>ධනු</th>
+			<td>ට ඨ ඩ ඪ ණ</td>
+		</tr>
+		<tr class="even">
+			<th>මකර</th>
+			<td>ත ථ ද ධ න</td>
+		</tr>
+		<tr class="odd">
+			<th>කම්භ</th>
+			<td>ප ඵ බ භ ම</td>
+		</tr>
+		<tr class="even">
+			<th>මීන</th>
+			<td>ය ර ල ව</td>
+		</tr-->
+	</tbody>
+</table>
+
+</td><td>
+<table cellspacing=0>
+	<thead>
+		<tr>
+			<th>ලග්නය</th>
+			<th>අක්ෂර</th>
+		</tr>
+	</thead>
+	<tbody>
+	<!-- 
+		<tr class="odd">
+			<th>මේෂ</th>
+			<td>අ ආ ශ</td>
+		</tr>
+		<tr class="even">
+			<th>වෘෂභ</th>
+			<td>ඉ ඊ උ ෂ</td>
+		</tr>
+		<tr class="odd">
+			<th>මිථුන</th>
+			<td>ඌ ඍ ඎ ස</td>
+		</tr>
+		<tr class="even">
+			<th>කටක</th>
+			<td>එ හ</td>
+		</tr> -->
+		<tr class="odd">
+			<th>සිංහ</th>
+			<td>ඓ ඔ ඕ ළ</td>
+		</tr>
+		<tr class="even">
+			<th>කන්‍යා</th>
+			<td>අං අඃ</td>
+		</tr>
+		<tr class="odd">
+			<th>තුලා</th>
+			<td>ක ඛ ග ඝ ඞ</td>
+		</tr>
+		<tr class="even">
+			<th>වෘශ්චික</th>
+			<td>ච ඡ ජ ඣ ඤ</td>
+		</tr>
+		<!-- 
+		<tr class="odd">
+			<th>ධනු</th>
+			<td>ට ඨ ඩ ඪ ණ</td>
+		</tr>
+		<tr class="even">
+			<th>මකර</th>
+			<td>ත ථ ද ධ න</td>
+		</tr>
+		<tr class="odd">
+			<th>කම්භ</th>
+			<td>ප ඵ බ භ ම</td>
+		</tr>
+		<tr class="even">
+			<th>මීන</th>
+			<td>ය ර ල ව</td>
+		</tr>
+		 -->
+	</tbody>
+</table>
+
+
+</td><td>
+<table cellspacing=0>
+	<thead>
+		<tr>
+			<th>ලග්නය</th>
+			<th>අක්ෂර</th>
+		</tr>
+	</thead>
+	<tbody>
+	<!-- 
+		<tr class="odd">
+			<th>මේෂ</th>
+			<td>අ ආ ශ</td>
+		</tr>
+		<tr class="even">
+			<th>වෘෂභ</th>
+			<td>ඉ ඊ උ ෂ</td>
+		</tr>
+		<tr class="odd">
+			<th>මිථුන</th>
+			<td>ඌ ඍ ඎ ස</td>
+		</tr>
+		<tr class="even">
+			<th>කටක</th>
+			<td>එ හ</td>
+		</tr>
+		<tr class="odd">
+			<th>සිංහ</th>
+			<td>ඓ ඔ ඕ ළ</td>
+		</tr>
+		<tr class="even">
+			<th>කන්‍යා</th>
+			<td>අං අඃ</td>
+		</tr>
+		<tr class="odd">
+			<th>තුලා</th>
+			<td>ක ඛ ග ඝ ඞ</td>
+		</tr>
+		<tr class="even">
+			<th>වෘශ්චික</th>
+			<td>ච ඡ ජ ඣ ඤ</td>
+		</tr>
+		 -->
+		<tr class="odd">
+			<th>ධනු</th>
+			<td>ට ඨ ඩ ඪ ණ</td>
+		</tr>
+		<tr class="even">
+			<th>මකර</th>
+			<td>ත ථ ද ධ න</td>
+		</tr>
+		<tr class="odd">
+			<th>කම්භ</th>
+			<td>ප ඵ බ භ ම</td>
+		</tr>
+		<tr class="even">
+			<th>මීන</th>
+			<td>ය ර ල ව</td>
+		</tr>
+	</tbody>
+</table>
+
+
+</td></tr>
+</table>
+</div>
+
+<div class="heading">දිනයට</div>
+<div class="indent">
+<table>
+<thead>
+<tr><th>දිනය</th><th>අක්ෂර</th></tr>
+</thead>
+<tr class="odd"><td>රිවිදින</td><td>අ ආ ඉ ඊ උ ඌ එ ඒ ඔ ඕ</td></tr>
+<tr class="even"><td>සඳුදින</td><td>ය ර ල ව ශ ෂ ස හ ළ</td></tr>
+<tr class="odd"><td>කුජදින</td><td>ක ඛ ග ඝ ඞ</td></tr>
+<tr class="even"><td>බුධදින</td><td>ට ඨ ඩ ඪ ණ</td></tr>
+<tr class="odd"><td>ගුරුදින</td><td>ත ථ ද ධ න </td></tr>
+<tr class="even"><td>කිවිදින</td><td>ච ඡ ජ ඣ ඤ</td></tr>
+<tr class="odd"><td>ශනිදින</td><td>	ප ඵ බ භ ම</td></tr>
+</table>
+</div>
+
+<div class="heading">නක්‍ෂත්‍ර පාදයට</div>
+<div class="indent">
+<table>
+<tr><td>
+<table cellspacing=0>
+	<thead>
+		<tr>
+			<th>නක්‍ෂත්‍රය</th><th>1</th><th>2</th><th>3</th><th>4</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+<tr class="odd"><th>අස්විද</th><td>   චු</td><td>චෙ</td><td>චො</td><td>ල</td></tr>
+<tr class="even"><th>බෙරණ</th><td>   ලි</td><td>ලු</td><td>ලෙ</td><td>ලො</td></tr>
+<tr class="odd"><th>කැති</th><td>       අ</td><td>ඉ</td><td>උ</td><td>එ</td></tr>
+<tr class="even"><th>රෙහෙණ</th><td>   ඔ</td><td>ව</td><td>වි</td><td>වු</td></tr>
+<tr class="odd"><th>මුවසිරස</th><td>   වෙ</td><td>වො</td><td>ක</td><td>කි</td><td></td></tr>
+<tr class="even"><th>අද</th><td>       කු</td><td>ඝ</td><td>ඞ</td><td>ජ</td><td></td></tr>
+<tr class="odd"><th>පුනාවස</th><td>   කෙ</td><td>කො</td><td>හ</td><td>හි</td></tr>
+<tr class="even"><th>පුෂ</th><td>       හු</td><td>හෙ</td><td>හො</td><td>ඩ</td></tr>
+<tr class="odd"><th>අස්ලිස</th><td>   ඩි</td><td>ඩු</td><td>ඩෙ</td><td>ඩො</td></tr>
+	</tbody>
+</table>
+
+</td><td>
+<table cellspacing=0>
+	<thead>
+		<tr>
+			<th>නක්‍ෂත්‍රය</th><th>1</th><th>2</th><th>3</th><th>4</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+<tr class="odd"><th>මා</th><td>       ම</td><td>මි</td><td>මු</td><td>මෙ</td></tr>
+<tr class="even"><th>පුවපල්</th><td>   මො</td><td>ට</td><td>ටි</td><td>ටු</td></tr>
+<tr class="odd"><th>උත්‍රපල්</th><td>   ටෙ</td><td>ටො</td><td>ප</td><td>පි</td></tr>
+<tr class="even"><th>හත</th><td>       පු</td><td>ෂ</td><td>ණ</td><td>ඨ</td></tr>
+<tr class="odd"><th>සිත</th><td>       පෙ</td><td>පො</td><td>ර</td><td>රි</td></tr>
+<tr class="even"><th>සා</th><td>       රු</td><td>රෙ</td><td>රො</td><td>ත</td><td></td></tr>
+<tr class="odd"><th>විසා</th><td>       ති</td><td>තු</td><td>තෙ</td><td>තො</td></tr>
+<tr class="even"><th>අනුර</th><td>       න</td><td>නි</td><td>නු</td><td>නෙ</td></tr>
+<tr class="odd"><th>දෙට</th><td>       නො</td><td>ය</td><td>යි</td><td>යු</td></tr>
+	</tbody>
+</table>
+
+</td>
+
+<td>
+<table cellspacing=0>
+	<thead>
+		<tr>
+			<th>නක්‍ෂත්‍රය</th><th>1</th><th>2</th><th>3</th><th>4</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+<tr class="odd"><th>මුල</th><td>       යෙ</td><td>යො</td><td>බ</td><td>බි</td></tr>
+<tr class="even"><th>පුවසල</th><td>   බු</td><td>ධ</td><td>ඵ</td><td>ඪ</td></tr>
+<tr class="odd"><th>උතුරුසල</th><td>   බෙ</td><td>බො</td><td>ජ</td><td>ජි</td></tr>
+<tr class="even"><th>සුවන</th><td>   ජු</td><td>ජෙ</td><td>ඛි</td><td>ඛු</td></tr>
+<tr class="odd"><th>දෙනට</th><td>   ග</td><td>ගි</td><td>ගු</td><td>ගෙ</td></tr>
+<tr class="even"><th>සියාවස</th><td>   ගො</td><td>ස</td><td>සි</td><td>සු</td></tr>
+<tr class="odd"><th>පුවපුටුප</th><td>   සෙ</td><td>සො</td><td>ද</td><td>දි</td></tr>
+<tr class="even"><th>උත්‍රපුටුප</th><td>   දු</td><td>දු</td><td>දු</td><td>දු</td></tr>
+<tr class="odd"><th>රේවතී</th><td>   දෙ</td><td>දො</td><td>ච</td><td>චි</td></tr>
+	</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</div>
+<div class="heading">ගණ</div>
+<div class="indent">
+<table>
+<thead><tr><th>ගණය </th><th>අක්ෂර </th><th>විපාක </th><th>අධිපතියා </th><th>නැකත </th><th>උදාහරණ </th></tr></thead>
+<tr><td>භූමි </td><td><span style="color: red;">ගු</span> <span style="color: red;">ගු</span> <span style="color: red;">ගු</span> </td><td>ජය</td><td>බුධ </td><td>දෙට </td><td>ධර්.මා.ශෝ ක</td></tr>
+<tr><td>දේව </td><td><span style="color: blue;">ල</span> <span style="color: blue;">ල</span> <span style="color: blue;">ල</span> </td><td>ආයු</td><td>ගුරු </td><td>බෙරණ </td><td>සු.ම.න </td></tr>
+<tr><td>චන්ද්‍ර </td><td><span style="color: red;">ගු</span> <span style="color: blue;">ල</span> <span style="color: blue;">ල</span> </td><td>යසස් </td><td>චන්ද්‍ර </td><td>මුවසිරස </td><td>සෝ.භි.ත </td></tr>
+<tr><td>ජල </td><td><span style="color: blue;">ල</span> <span style="color: red;">ගු</span> <span style="color: red;">ගු</span> </td><td>දියුණුව </td><td>ශුක්‍ර </td><td>සියාවාස </td><td>සු.ජා.තා </td></tr>
+<tr><td>සූර්ය </td><td><span style="color: blue;">ල</span> <span style="color: red;">ගු</span> <span style="color: blue;">ල</span> </td><td>රෝග </td><td>රවි  </td><td>පුනාවස </td><td>අ.ශෝ.ක</td></tr>
+<tr><td>අග්නි </td><td><span style="color: red;">ගු</span> <span style="color: blue;">ල</span> <span style="color: red;">ගු</span> </td><td>විනාශය </td><td>කුජ </td><td>කැති </td><td>ධර්.ම.පා ල </td></tr>
+<tr><td>වායු </td><td><span style="color: blue;">ල</span> <span style="color: blue;">ල</span> <span style="color: red;">ගු</span> </td><td>මර </td><td>ශනි </td><td>සා </td><td>ජ.ය.වී ර</td></tr>
+<tr><td>ආකාශ </td><td><span style="color: red;">ගු</span> <span style="color: red;">ගු</span> <span style="color: blue;">ල</span> </td><td>ධන හානි </td><td>රාහු </td><td>සුවන</td><td>ආ.නන්.ද </td></tr>
+</table>
+</div>
+{% endblock %}
+

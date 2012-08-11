@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block heading %}{% block title %}තොරතුරු ඇතුළත් කිරීම {% endblock %}{% endblock %}
+{% block content %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<font color="red">
+{{event.name.errors}}
+{{event.time.errors}}
+{{event.errors}}
+</font>
+<form method="post">
+<table>
+<tr><th>නම  </th><td> {{ event.name }} </td></tr>
+<tr><th>වේලාව  </th><td> {{ event.time }} </td></tr>
+{% if not pureEvent %}
+<tr><th>ස්ත්‍රී/පුරුෂ/තත්කාල </th><td> {{ event.sex }} </td></tr>
+{% endif %}
+<tr><th>රට </th><td> {{ event.country }} </td></tr>
+<tr><th>නගරය  </th><td> {{ event.city }} <input onclick="location.href='/astro/location/'" type="button" value="නගර සම්බන්ධ තොරතුරු"/></td></tr>
+</table>
+<br />
+<input type="submit" name="control_submit" value="ලියාපදිංචි  කරන්න" />
+</form>
+{% endblock %}

@@ -1,0 +1,55 @@
+/*div#navigation a{padding:5px; text-decoration:none; color:#000000;}*/
+/* comment */
+/* .heading {background: #F3F2ED;} */
+
+
+html,body,td,th,li,ul,input,option,select,p{font-size: 14pt}
+strong{font-size: 20pt}
+h1{font-size: 28pt}
+html,body{margin:0;padding:0}
+body{font: 76% arial,sans-serif;text-align:center;background:#606060;}
+p{margin:0 10px 10px}
+div#header_head a{padding:5px; text-decoration:none; color:#000000;}
+div#header{background-color:#F3F2ED;}
+div#header h1{height:80px;line-height:80px;margin:0;padding-left:10px;}
+div#container{background:#F6F0E0;text-align:left}
+div#content{background:white;}
+div#content p{line-height:1.4}
+div#navigation{}
+div#navigation ul{margin:15px 0; padding:0; list-style-type:none;}
+div#navigation li{margin-bottom:5px;}
+div#extra{background:#CCC8B3;}
+div#extra a{padding:5px; text-decoration:underline; color:"";}
+div#footer{background:#BFBD93;}
+div#footer p{margin:0;padding:5px 10px}
+div#container{width:1000px;margin:0 auto}
+div#wrapper{float:left;width:100%;margin: 0 0 0 0}
+div#content{margin: 0 0 0 150px}
+div#navigation{float:left;width:150px;}
+div#extra{float:right;width:150px;height:33px;margin-top:-33px}
+div#footer{clear:left;width:100%}
+.box{text-align:center;border:solid windowtext 1.0pt;}
+.highlight tr.hilight { background: #c9f; } 
+.heading {
+	font-size: 20pt;
+	margin: 10px 0 10px 0;
+	padding-left: 20pt;
+    background: url("/static/forum_thread_title_bg_1x50.png") repeat-x scroll left top transparent;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.indent {
+	margin: 10px 0 10px 70px;
+}
+
+table thead tr th {
+    background-color: #E2E2E2;
+}
+
+table tr.odd th, table tr.odd td {
+    background: none repeat scroll 0 0 #EFEFEF;
+}
+
+table {
+	border-collapse: collapse;
+}

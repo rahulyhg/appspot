@@ -1,0 +1,56 @@
+{% csrf_token %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>{% block title %}ශ්‍රී වෙබ් අඩවිය{% endblock %}</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="/static/styles.css" />
+</head>
+<body>
+<div id="container">
+	<div id="header">
+		<div id="header_head">
+			<h1><a href="http://sandeva.appspot.com/"><i>ශ්‍රී වෙබ් අඩවිය</i></a></h1>
+		</div>
+		<div id="extra">
+			<p>
+				<a href={% auth_login_url %}>login</a> 
+				<a href={% auth_logout_url %}>logouot</a> 
+			</p>
+		</div>
+	</div>
+  <div id="wrapper">
+	<div id="navigation">
+	  <p><strong>පටුන</strong></p>
+	  <ul>
+	    <li><a href="/srishell/">ශ්‍රී ෂෙල් </a></li>
+	    <li><a href="/astro/birth/">ජ්‍යොතිශාස්ත්‍රය</a></li>
+    	<li><a href="/astro/docs/names/">නාම අක්ෂර</a></li>
+	  </ul>
+	</div>
+	<div id="content">
+      <p><strong>{% block heading %}ශ්‍රී ෂෙල් සිංහල මෘදුකාංගය {% endblock %}</strong></p>
+      {% block content %}
+      <p>How to Install SriShell</p>
+      <ol>
+      	<li>
+      	<a target="_blank" href="/static/DotNetFW35SP1.htm">Install .net framework (SriShell requires .net framework)</a><br />
+      	පළමුව ".net framework" ස්ථාපනය (install) කරගන්න. <br /> 
+      	(ශ්‍රී ෂෙල් ක්‍රියාත්මක කරවීමට  ".net framework" අවශ්‍යයි.)
+      	</li>
+      	<li><a href="/srishell/download/">Download SriShell</a></li>
+      	<li><a target="_blank" href="/static/InstallSriShell.htm">Install and run SriShell</a></li>
+      </ol>
+      <!-- 
+      <p>සිංහල අකුරු ලිවීමට <i>ශ්‍රී ෂෙල්</i> මෘදුකාංගය භාවිතා කරන්න. පහත පෙනෙන ඕනෑම වෙබ් අඩවියකින් <i>ශ්‍රී ෂෙල්</i> ලබා ගත හැක.</p>
+      <p>ශ්‍රී ෂෙල් ක්‍රියාත්මක කරවීමට "<b>F8</b>" යතුර භාවිතා කරන්න.</p>
+       -->
+      {% endblock %}
+    </div>
+  </div>
+  <div id="footer">
+    <p><i>ශ්‍රී  මෘදුකාංග</i></p>
+  </div>
+</div>
+</body>
+</html>

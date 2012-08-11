@@ -1,0 +1,27 @@
+application: sandeva
+version: 16
+runtime: python27
+api_version: 1
+threadsafe: no
+
+#libraries:
+#- name: django
+#  version: "1.3"
+
+#builtins:
+#- django_wsgi: on
+
+handlers:
+- url: /static
+  static_dir: static
+
+- url: /testpdf
+  script: testpdf.py
+
+- url: /srishell/download/.*
+  script: blob.py
+
+- url: /.*
+  script: main.py
+
+

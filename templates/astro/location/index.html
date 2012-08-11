@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load tags %}
+{% block heading %}{% block title %}භූගෝලීය තොරතුරු{% endblock %}{% endblock %}
+{% block content %}
+<form action="" method="post">
+	<table>
+		{{country}}
+	</table>
+</form>
+{% if data_list %}
+	<table>
+	<tr>
+   		<th>නගරය </th>
+   		<th>අක්ෂාංශ </th>
+   		<th>දේශාංශ </th>
+   		<th>වේලා කලාපය</th>
+   	</tr>
+	{% for location in data_list %}
+		<tr>
+	   		<td>{{location.city}}</td>
+	   		<td>{{location.latitude|p:"උතුරු/දකුණු"}} : {{location.latitude|dd}}°{{location.latitude|mm}}′{{location.latitude|ss}}″</td>
+	   		<td>{{location.longitude|p:"නැගෙනහිර/බටහිර"}} : {{location.longitude|dd}}°{{location.longitude|mm}}′{{location.longitude|ss}}″</td>
+	   		<td>{{location.timezone|p:"+/-"}} {{location.timezone|dd}}:{{location.timezone|mm}}</td>
+	   		<td><input type="button" onclick="location.href='{{location.key}}/edit'"/> </td>
+	   	</tr>
+	{% endfor %}
+	</table>
+{% endif %}
+<input onclick="location.href='/astro/location/edit/'" type="button" value="නගරයක් ඇතුළත් කරන්න"/>
+{% endblock %}

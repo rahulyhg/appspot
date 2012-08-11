@@ -1,0 +1,476 @@
+{% extends "base.html" %}
+{% load charttags %}
+{% load tags %}
+{% block title %}{% block heading %}කේන්ද්‍රය  {% endblock %}{% endblock %}
+{% block content %}
+<script type="text/javascript">
+<!--
+function getRegElements(RE)
+{
+	var RE = new RegExp(RE);
+	var lst=new Array();	
+ 	var tag, tags;
+ 	var all=document.getElementsByTagName("body")[0].getElementsByTagName("*");
+ 	for(i = 0; i < all.length; i++)
+	{
+		if(RE.test(all[i].id)) {
+			lst.push(all[i]);
+		}
+ 	}
+ 	//alert(RE+lst);
+	return lst;
+}
+//-->
+</script>
+<form action="/astro/chart/simplechart/" method="get" id='form0'>
+	<input type="hidden" name="key" value="{{event.key}}">
+	<input type="hidden" name="name" value="{{event.name}}">
+	<input type="hidden" name="time" value="{{event.time|date:"YmdHis"}}">
+	<input type="hidden" name="longitude" value="{{event.longitude|dd}}{{event.longitude|mm}}">
+	<input type="hidden" name="latitude" value="{{event.latitude|dd}}{{event.latitude|mm}}">
+	<input type="hidden" name="timezone" value="{{event.timezone|sgn:"+-"}}{{event.timezone|dd}}{{event.timezone|mm}}{{event.timezone|ss}}">
+	<input type="hidden" name="city" value="{{event.city}}">
+	<input type="hidden" name="country" value="{{event.country}}">
+</form>
+{% for event1 in events %}
+	<form action="/astro/chart/simplechart/" method="get" id='form{{event1.key}}'>
+		<input type="hidden" name="key" value="{{event.key}}">
+		<input type="hidden" name="name" value="{{event.name}}">
+		<input type="hidden" name="time" value="{{event.time|date:"YmdHis"}}">
+		<input type="hidden" name="longitude" value="{{event.longitude|dd}}{{event.longitude|mm}}">
+		<input type="hidden" name="latitude" value="{{event.latitude|dd}}{{event.latitude|mm}}">
+		<input type="hidden" name="timezone" value="{{event.timezone|sgn:"+-"}}{{event.timezone|dd}}{{event.timezone|mm}}{{event.timezone|ss}}">
+		<input type="hidden" name="city" value="{{event.city}}">
+		<input type="hidden" name="country" value="{{event.country}}">
+		
+		<input type="hidden" name="key1" value="{{event1.key}}">
+		<input type="hidden" name="name1" value="{{event1.name}}">
+		<input type="hidden" name="time1" value="{{event1.time|date:"YmdHis"}}">
+		<input type="hidden" name="sex1" value="{{event1.sex}}">
+		<input type="hidden" name="longitude1" value="{{event1.location.longitude|dd}}{{event1.location.longitude|mm}}">
+		<input type="hidden" name="latitude1" value="{{event1.location.latitude|dd}}{{event1.location.latitude|mm}}">
+		<input type="hidden" name="timezone1" value="{{event1.location.timezone|sgn:"+-"}}{{event1.location.timezone|dd}}{{event1.location.timezone|mm}}{{event1.location.timezone|ss}}">
+		<input type="hidden" name="city1" value="{{event1.location.city}}">
+		<input type="hidden" name="country1" value="{{event1.location.country}}">
+	</form>
+{% endfor %}
+<table width="100%">
+<tr><th>නම</th> <td>:</td> <td>{{event.name}}</td><th>කේන්ද්‍ර ගැළපීම</th> <td>:</td> <td>{{eventselect}}</td></tr>
+<tr><th>උපන් වේලාව</th> <td>:</td> <td><small>{{event.time|date:"Y-m-d H:i:s"}}</small></td><th>වේලාව</th> <td>:</td> <td><small>{{event1.time|date:"Y-m-d H:i:s"}}</small></td></tr>
+<tr><th>උපන් ස්ථානය</th> <td>:</td> <td>{{event.country}} - {{event.city}}</td><th>ස්ථානය</th> <td>:</td> <td>{{event1.country}} - {{event1.city}}</td></tr>
+{% if canEdit %}
+<tr>
+<td colspan="3" align="center"><input type="button" value="දත්ත වෙනස් කරන්න" onclick="window.location='/astro/birth/{{request.GET.key}}/edit/'"></td>
+<td colspan="3" align="center">
+	{% if event1.sex == "None" %}
+			<input type="button" value="දත්ත වෙනස් කරන්න" id='editbutton1' onclick="window.location='/astro/birth/{{event.key}}/'+document.getElementsByName('eventselect')[0].value+'/edit/event/'"">
+	{% else %}
+			<input type="button" value="දත්ත වෙනස් කරන්න" id='editbutton1' onclick="window.location='/astro/birth/'+document.getElementsByName('eventselect')[0].value+'/edit/'"">
+	{% endif %}
+</td>
+</tr>
+<tr><td><td colspan="3" align="center"><input type="button" value="අවස්ථාවක් ඇතුළත් කරන්න" onclick="window.location='/astro/birth/{{request.GET.key}}/{{request.GET.key1}}/edit/event/'"></td></td></tr>
+{% endif %}
+</table>
+
+<script type="text/javascript">
+<!--
+	if(0==document.getElementsByName('eventselect')[0].value)
+	{
+		document.getElementById('editbutton1').disabled=true;
+	}
+//-->
+</script>
+
+
+<br />
+<div class="heading">භාව කේන්ද්‍රය  </div>
+<div align="center">
+<img src="../bmp/?{{request.GET.urlencode}}" width="749" height="749">
+</div>
+<div class="heading">ගෝචර  </div>
+<div align="center">
+<img src="../bmp2/?{{request.GET.urlencode}}" width="749" height="749">
+</div>
+<div class="heading">දළ කේන්ද්‍රය  </div>
+<div align="center">
+<table width="600px" border=0 cellspacing=0 cellpadding=0
+	style='margin-left: 4.7pt; border-collapse: collapse'>
+	<col width="9%">
+	<col width="9%">
+	<col width="9%">
+	<col width="9%">
+	<col width="9%">
+	<col width="9%">
+	<col width="9%">
+	<col width="9%">
+	<col width="9%">
+	<col width="9%">
+	<col width="9%">
+	<tbody>
+		<tr style='height: 33.0pt'>
+			<td class="box">{{event|house:"3"}}</td>
+			<td class="box">{{event|house:"2"}}</td>
+			<td class="box">{{event|house:"1"}}</td>
+			<td class="box">{{event|house:"12"}}</td>
+			<td class="box">{{event|house:"11"}}</td>
+			<td />
+			<td class="box">{{event|navamshaka_house:"3"}}</td>
+			<td class="box">{{event|navamshaka_house:"2"}}</td>
+			<td class="box">{{event|navamshaka_house:"1"}}</td>
+			<td class="box">{{event|navamshaka_house:"12"}}</td>
+			<td class="box">{{event|navamshaka_house:"11"}}</td>
+		</tr>
+		<tr style='height: 33.0pt'>
+			<td class="box">{{event|house:"4"}}</td>
+			<td colspan=3 class="box">ජම්මෝදයම් <br />{{event.I|rashi}} ලග්නම්</td>
+			<td class="box">{{event|house:"10"}}</td>
+			<td />
+			<td class="box">{{event|navamshaka_house:"4"}}</td>
+			<td colspan=3 class="box">ජම්මෝදයම් <br />{{event.I|navamshaka}} නවාංශකම්</td>
+			<td class="box">{{event|navamshaka_house:"10"}}</td>
+		</tr>
+		<tr style='height: 33.0pt'>
+			<td class="box">{{event|house:"5"}}</td>
+			<td class="box">{{event|house:"6"}}</td>
+			<td class="box">{{event|house:"7"}}</td>
+			<td class="box">{{event|house:"8"}}</td>
+			<td class="box">{{event|house:"9"}}</td>
+			<td />
+			<td class="box">{{event|navamshaka_house:"5"}}</td>
+			<td class="box">{{event|navamshaka_house:"6"}}</td>
+			<td class="box">{{event|navamshaka_house:"7"}}</td>
+			<td class="box">{{event|navamshaka_house:"8"}}</td>
+			<td class="box">{{event|navamshaka_house:"9"}}</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<br />
+<table align="center">
+	<tr><th>නක්ෂත්‍ර</th><td>{{event|attr:"Moon"|nakshatra|sinhala:"nakshatra_lord"}} හිමි  {{event|attr:"Moon"|nakshatra|sinhala:"nakshatra"}} නැකත </td></tr>
+	<tr><th>තිථි</th><td>{{event|thithi|sinhala:"thithi"}}</td></tr>
+</table>
+
+
+<div class="heading">වින්ශෝත්තරී මහා දශාව </div>
+<div class="indent">
+{% comment %}
+<table cellspacing="0"  cellpadding="0">
+	<col width="33%">
+	<col width="33%">
+	<col width="34%">
+	<thead><tr align="center"><th>මහා දශාව </th><th>අන්තර් දශාව</th><th>විදශාව</th></tr></thead>
+	<tbody>
+<tr>
+<td>
+	<table cellspacing="0" style="background-color: #FFFF33" class="highlight">
+		{% for d in dasa|attr:"0" %}
+			<tr onmouseout="this.className='';" onmouseover="this.className='hilight';" id="tr{{d.p}}" onclick="monclick('{{d.p}}')"><td>{{d.p|sinhala:"nakshatra_lord"}}</td><td><small>{{d.strt|date:"Y-m-d"}}</small></td><td><small>{{d.end|date:"Y-m-d"}}</small></td></td></td></tr>
+		{% endfor %}
+	</table>
+</td>
+<td>
+	{% for d in dasa|attr:"1" %}
+	<div id="{{d|attr:"0"|attr:"p"}}" style="display: none">
+		<table cellspacing="0" style="background-color: #FFCC33"  class="highlight">
+			{% for ad in d %}
+				<tr onmouseout="this.className='';" onmouseover="this.className='hilight';" id="tr{{d|attr:"0"|attr:"p"}}{{ad.p}}" onclick="monclick('{{d|attr:"0"|attr:"p"}}{{ad.p}}')"><td>{{ad.p|sinhala:"nakshatra_lord"}}</td><td><small>{{ad.strt|date:"Y-m-d"}}</small></td><td><small>{{ad.end|date:"Y-m-d"}}</small></td></td></td></tr>
+			{% endfor %}
+		</table>
+	</div>
+	{% endfor %}
+</td>
+<td>
+	{% for d in dasa|attr:"2" %}
+		{% for ad in d %}
+			<div id="{{d|attr:"0"|attr:"0"|attr:"p"}}{{ad|attr:"0"|attr:"p"}}" style="display: none">
+				<table width="100%" cellspacing="0" style="background-color: #FF9933" class="highlight">
+					{% for vd in ad %}
+						<tr onmouseout="this.className='';" onmouseover="this.className='hilight';" id="tr{{d|attr:"0"|attr:"0"|attr:"p"}}{{ad|attr:"0"|attr:"p"}}{{vd.p}}" onclick="monclick('{{d|attr:"0"|attr:"0"|attr:"p"}}{{ad|attr:"0"|attr:"p"}}{{vd.p}}')"><td>{{vd.p|sinhala:"nakshatra_lord"}}</td><td><small>{{vd.strt|date:"Y-m-d"}}</small></td></td></td><td><small>{{vd.end|date:"Y-m-d"}}</small></td></td></td></tr>
+					{% endfor %}
+				</table>
+			</div>
+		{% endfor %}
+	{% endfor %}
+</td>
+</tr>
+</tbody>
+</table>
+
+<br />
+<script language="javascript">
+function monclick(sid) {
+	lst=getRegElements('^tr[0-8]{'+sid.length+'}$');
+	for(var i=0;i<lst.length;i++) {
+		lst[i].style.backgroundColor='';
+	}
+	lst=getRegElements('^[0-8]{'+sid.length+',}$');
+	for(var i=0;i<lst.length;i++) {
+		lst[i].style.display='none';
+	}
+	document.getElementById('tr'+sid).style.backgroundColor=['#FFCC33','#FF9933','#FF6633'][sid.length-1];
+	var ele=document.getElementById(sid);
+	if(!!ele) ele.style.display='block';
+}
+monclick('{{currentDasa|attr:"0"}}');
+monclick('{{currentDasa|attr:"0"}}{{currentDasa|attr:"1"}}');
+monclick('{{currentDasa|attr:"0"}}{{currentDasa|attr:"1"}}{{currentDasa|attr:"2"}}');
+</script>
+
+{% endcomment %}
+<table cellspacing="0"  cellpadding="0">
+	<col width="33%">
+	<col width="33%">
+	<col width="34%">
+	<thead><tr align="center"><th>මහා දශාව </th><th>අන්තර් දශාව</th><th>විදශාව</th></tr></thead>
+	<tbody>
+<tr>
+<td>
+	<table id='dasaTbl' cellspacing="0" style="background-color: #FFFF33" class="highlight">
+		{% for d in "range(9)"|pyeval %}
+			<tr onmouseout="this.className='';" onmouseover="this.className='hilight';" id="tr{{d.p}}" onclick="monclick('{{d.p}}')">
+				<td></td>
+				<td><small></small></td>
+				<td><small></small></td>
+			</tr>
+		{% endfor %}
+	</table>
+</td>
+<td>
+	<table id='dasaTblX' cellspacing="0" style="background-color: #FFCC33"  class="highlight">
+		{% for d in "range(9)"|pyeval %}
+			<tr onmouseout="this.className='';" onmouseover="this.className='hilight';" id="tr{{d.p}}" onclick="monclick('{{d.p}}')">
+				<td></td>
+				<td><small></small></td>
+				<td><small></small></td>
+			</tr>
+		{% endfor %}
+	</table>
+</td>
+<td>
+	<table id='dasaTblXX' width="100%" cellspacing="0" style="background-color: #FF9933" class="highlight">
+		{% for d in "range(9)"|pyeval %}
+			<tr onmouseout="this.className='';" onmouseover="this.className='hilight';" id="tr{{d.p}}" onclick="monclick('{{d.p}}')">
+				<td></td>
+				<td><small></small></td>
+				<td><small></small></td>
+			</tr>
+		{% endfor %}
+	</table>
+</td>
+</tr>
+</tbody>
+</table>
+<script language="javascript">
+
+function ds(p,l)
+{
+	this.p=p;
+	this.l=l;
+}
+var plnts=new Array();
+plnts.push(new ds("කේතු",7));
+plnts.push(new ds("ශුක්‍ර",20));
+plnts.push(new ds("රවි",6));
+plnts.push(new ds("චන්ද්‍ර",10));
+plnts.push(new ds("කුජ",7));
+plnts.push(new ds("රාහු",18));
+plnts.push(new ds("ගුරු",16));
+plnts.push(new ds("ශනි",19));
+plnts.push(new ds("බුධ",17));
+function update(p,strt,end,tbl) 
+{
+	function getclick(p,strt,end,tbl,row) 
+	{
+		function onclck()
+		{
+			rows=document.getElementById(tbl.substring(0,tbl.length-1)).rows;
+			for(var i=0;i<rows.length;i++)
+				rows[i].bgColor=''
+			row.bgColor=['#FFCC33','#FF9933','#FF6633'][tbl.length-8];
+			tt=document.getElementById(tbl);
+			if(!tt)return;
+			tt.style.display='block';
+			ct=document.getElementById(tbl+'X');
+			if(!!ct)ct.style.display='none';
+			update(p, strt, end, tbl);
+		}
+		return onclck;
+	}
+	for(var i=0;i<plnts.length;i++)
+		if(plnts[i].p==p)
+		{
+			plnts=plnts.slice(i).concat(plnts.slice(0,i));
+			break;			
+		}
+	var acc=0;
+	var d=end-strt;
+	var x=new Date(strt);
+	var now=new Date();
+	function pad(num, size) {
+	    var s = num+"";
+	    while (s.length < size) s = "0" + s;
+	    return s;
+	}
+	
+	function fmt(x)
+	{
+		return x.getFullYear()+'-'+pad(1+x.getMonth(),2)+'-'+pad(x.getDate(),2);
+	}
+	var call;
+	for(var i=0;i<plnts.length;i++)
+	{
+		var row=document.getElementById(tbl).rows[i];
+		row.children[0].innerHTML=plnts[i].p;
+		row.children[1].children[0].innerHTML=fmt(x);
+		acc+=plnts[i].l;
+		var s=new Date(x);
+		x.setTime(strt.getTime()+d*acc/120);
+		row.children[2].children[0].innerHTML=fmt(x);
+		row.onclick=getclick(plnts[i].p,s,new Date(x),tbl+'X',row);
+		if(s<now && now<x)
+		{
+			row.bgColor=['#FFCC33','#FF9933','#FF6633'][tbl.length-7];
+			call=row.onclick;
+		}
+		else row.bgColor='';
+	}	
+	if(!!call)call();
+}
+update("{{event.Moon|nakshatra|nakshatra_lord|sinhala:"ග්‍රහ"}}",new Date({{dasa.strt.year}},{{dasa.strt.month}}-1,{{dasa.strt.day}}),new Date({{dasa.end.year}},{{dasa.end.month}}-1,{{dasa.end.day}}),"dasaTbl")
+</script>
+
+
+
+
+</div>
+
+<div class="heading">නිවේදක ග්‍රහයින් (ක්‍රිෂ්ණමූර්ති ක්‍රමය)</div>
+<div class="indent">
+<table>
+	{% comment %}
+	<tr>
+		{% for bhv_set in "[['I','II','III','IV','V','VI'],['VII','VIII','IX','X','XI','XII']]"|pyeval %}
+			<td>
+				<table cellspacing=0>
+					<thead>
+				  <tr>
+				    <th>භාවය</th>
+				    <th><small>භාව ගත ග්‍රහයින් හා 	<br /> (එම නක්ෂත්‍ර ගත ග්‍රහයින්)</small></th>
+				    <th><small>භාවාධිපති හා 		<br /> (එම නක්ෂත්‍ර ගත ග්‍රහයින්)</small></th>
+				  </tr>
+				  </thead>
+				  <tbody>
+				  {% for bhv in bhv_set %}
+				  <tr class="{% cycle 'odd' 'even' %}">
+				    <td>{{bhv}}</td>
+				    <td>
+				    	{% for i in significators|attr:bhv|attr:"0" %}
+				    	{% for p in i|attr:"0" %}{% if forloop.first %}({% endif %}{{p|sinhala:"ග්‍රහ(කෙටි)"}}{% if forloop.last %}){% else %},{% endif %}{% endfor %}
+				    	{{i|attr:"1"|sinhala:"ග්‍රහ(කෙටි)"}}{% if not forloop.last %},{% endif %}
+				    	{% endfor %}
+				    </td>
+				    <td>
+				    	{% for p in significators|attr:bhv|attr:"1"|attr:"0" %}{% if forloop.first %}({% endif %}{{p|sinhala:"ග්‍රහ(කෙටි)"}}{% if forloop.last %}){% else %},{% endif %}{% endfor %}
+				    	{{significators|attr:bhv|attr:"1"|attr:"1"|sinhala:"ග්‍රහ(කෙටි)"}}
+				    </td>
+				  </tr>
+				  {% endfor %}
+				  </tbody>
+				</table>
+			</td>
+		{% endfor %}
+	</tr>
+	{% endcomment %}
+	<tr>
+		{% for bhv_set in "[['I','II','III','IV','V','VI'],['VII','VIII','IX','X','XI','XII']]"|pyeval %}
+			<td>
+				<table cellspacing=0>
+					<thead>
+				  <tr>
+				    <th>භාවය</th>
+				    <th><small>භාව ගත ග්‍රහයින් හා 	<br /> (එම නක්ෂත්‍ර ගත ග්‍රහයින්)</small></th>
+				    <th><small>භාවාධිපති හා 		<br /> (එම නක්ෂත්‍ර ගත ග්‍රහයින්)</small></th>
+				  </tr>
+				  </thead>
+				  <tbody>
+				  {% for bhv in bhv_set %}
+				  <tr class="{% cycle 'odd' 'even' %}">
+				    <td>{{bhv}}</td>
+				    <td>
+				    	{% for pl in event|bhava_occupant:bhv %}
+					    	{% for p in event|nakshtra_occupants:pl %}{% if forloop.first %}({% endif %}{{p|sinhala:"ග්‍රහ(කෙටි)"}}{% if forloop.last %}){% else %},{% endif %}{% endfor %}
+					    	{{pl|sinhala:"ග්‍රහ(කෙටි)"}}{% if not forloop.last %},{% endif %}
+				    	{% endfor %}
+				    </td>
+				    <td>
+				    {% with event|attr:bhv|shadvarga:"1"|rashi_lord as pl %}
+				    	{% for p in event|nakshtra_occupants:pl %}{% if forloop.first %}({% endif %}{{p|sinhala:"ග්‍රහ(කෙටි)"}}{% if forloop.last %}){% else %},{% endif %}{% endfor %}
+				    	{{pl|sinhala:"ග්‍රහ(කෙටි)"}}
+				    {% endwith %}
+				    </td>
+				  </tr>
+				  {% endfor %}
+				  </tbody>
+				</table>
+			</td>
+		{% endfor %}
+	</tr>
+</table>
+</div>
+
+<div class="heading">ග්‍රහයින් සම්බන්ධ විස්තර  </div>
+<div class="indent">
+<table cellspacing=0>
+	<thead align="center">
+	<tr>
+		<th></th>
+		<th rowspan="2">ස්ථානය</th>
+		<th rowspan="2" colspan="3">වේගය</th>
+		<th align="center" colspan="18">ෂඩ්වර්ගය</th>
+		<th>ශුභ</th>
+		<th rowspan="2">ගෝචර</th>
+	</tr>
+	<tr>
+		<th></th>
+		<th colspan="3">රාශි</th>
+		<th colspan="3">හෝරා</th>
+		<th colspan="3">ද්‍රෙෂ්</th>
+		<th colspan="3">නවා</th>
+		<th colspan="3">ද්වාදශ</th>
+		<th colspan="3">ත්‍රිංශා</th>
+		<th>වර්ග</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% with event|attr:"I"|shadvarga:"1" as lagna %}
+	{% with event|attr:"Moon"|shadvarga:"1" as candra %}
+	{% for p in "['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Moon_Node','Moon_S_Node']"|pyeval %}
+		<tr class="{% cycle 'odd' 'even' %}">
+			<th>{{p|get_sinhala_planet}}</th>
+			<td align="right"><small>{{event|attr:p|dd:"30"}}°{{event|attr:p|mm}}'{{event|attr:p|ss}}"</small></td>
+			{% with p|add:".Speed" as pSpeed %}
+				<td align="right"><small>&nbsp;{{event|attr:pSpeed|sgn}}{{event|attr:pSpeed|dd}}°</small></td>
+				<td><small>{{event|attr:pSpeed|mm}}'</small></td>
+				<td><small>{{event|attr:pSpeed|ss}}"</small></td>
+			{% endwith %}
+			{% for i in "[1,2,3,9,12,30]"|pyeval %}
+				<td>{{event|attr:p|shadvarga:i|sinhala:"රාශි"}}</td><td>-</td><td>{{event|attr:p|shadvarga:i|rashi_lord|sinhala:"ග්‍රහ(කෙටි)"}}</td>
+			{% endfor %}
+			<td><small>{{event|attr:p|shubha_varga}}</small></td>
+			<td>
+				{% with event1|attr:p|shadvarga:"1"|sub:lagna|gochara:p as tmp %}
+				{% with event1|attr:p|shadvarga:"1"|sub:candra|gochara:p|add:tmp as v %}
+				{{ "{-2:'අශුභ',0:'සම',2:'ශුභ'}[%s]"|pyeval:v}}
+				{% endwith %}
+				{% endwith %}
+			</td>
+		</tr>
+  	{% endfor %}
+	{% endwith %}
+	{% endwith %}
+  	</tbody>
+</table>
+</div>
+{% endblock %}

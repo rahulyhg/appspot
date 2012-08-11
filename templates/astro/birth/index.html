@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load charttags %}
+{% load tags %}
+{% block heading %}{% block title %}උපන් වේලාවන් {% endblock %}{% endblock %}
+{% block content %}
+{% if data_list %}
+	<script type="text/javascript">
+	<!--
+		function getCheckedValue(radioObj) {
+			if(!radioObj)
+				return "";
+			var radioLength = radioObj.length;
+			if(radioLength == undefined)
+				if(radioObj.checked)
+					return radioObj.value;
+				else
+					return radioLength;
+			for(var i = 0; i < radioLength; i++) {
+				if(radioObj[i].checked) {
+					return radioObj[i].value;
+				}
+			}
+		}
+
+		function navigate(url) {
+			key=getCheckedValue(document.getElementsByName('key'));
+			if(!key)
+				alert("උපන් වේලාවක් තෝරන්න");
+			else
+				location.href=url.replace("{key}",key)
+		}
+	//-->
+	</script>
+<div class="indent">
+	<table>
+	<thead>
+	<tr align="center">
+		<!-- <th><input type="radio" onchange=""></input></th> -->
+		<th>නම</th>
+		<th>උපන් වේලාව</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for event in data_list %}
+	<form action="/astro/chart/simplechart/" method="get" id='form{{event.key}}'>
+	<input type="hidden" name="key" value="{{event.key}}">
+	<input type="hidden" name="name" value="{{event.name}}">
+	<input type="hidden" name="time" value="{{event.time|date:"YmdHis"}}">
+	<input type="hidden" name="longitude" value="{{event.location.longitude|dd}}{{event.location.longitude|mm}}">
+	<input type="hidden" name="latitude" value="{{event.location.latitude|dd}}{{event.location.latitude|mm}}">
+	<input type="hidden" name="timezone" value="{{event.location.timezone|sgn:"+-"}}{{event.location.timezone|dd}}{{event.location.timezone|mm}}{{event.location.timezone|ss}}">
+	<input type="hidden" name="city" value="{{event.location.city}}">
+	<input type="hidden" name="country" value="{{event.location.country}}">
+	<tr class="{% cycle 'odd' 'even' %}">
+		<td><a href="javascript:document.getElementById('form{{event.key}}').submit()">{{event.name}}</a></td>
+		<td>{{event.time|date:"Y-m-d H:i:s"}}</td>
+	</tr>
+	</form>
+	{% endfor %}
+	</tbody>
+	</table>
+</div>
+	<!--<input onclick="navigate('/astro/chart/{key}/simplechart/')" type="button" value="දළ කේන්ද්‍රය"/>
+	<input onclick="navigate('/astro/chart/{key}/circlechart/')" type="button" value="චක්‍රාකාර කේන්ද්‍රය"/> 
+	<input onclick="navigate('{key}/edit/')" type="button" value="වේලාව වෙනස් කරන්න"/>-->
+{% else %}
+    <p> ඔබගේ උපන් වේලාව තවම ඇතුළත් කර නොමැත. <br />
+    Google login භාවිතා කර login වී ඔබගේ උපන් වේලාව ඇතුළත් කරන්න  </p>
+{% endif %}
+	<input onclick="location.href='/astro/birth/edit/'" type="button" value="උපන් වේලාවක් ඇතුළත් කරන්න"/>
+{% endblock %}
