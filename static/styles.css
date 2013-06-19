@@ -1,13 +1,6 @@
-/*div#navigation a{padding:5px; text-decoration:none; color:#000000;}*/
-/* comment */
-/* .heading {background: #F3F2ED;} */
-
-
-html,body,td,th,li,ul,input,option,select,p{font-size: 14pt}
-strong{font-size: 20pt}
-h1{font-size: 28pt}
+html,body,td,th,li,ul,input,option,select,p{font-size: small}
 html,body{margin:0;padding:0}
-body{font: 76% arial,sans-serif;text-align:center;background:#606060;}
+body{text-align:center;background:#606060;}
 p{margin:0 10px 10px}
 div#header_head a{padding:5px; text-decoration:none; color:#000000;}
 div#header{background-color:#F3F2ED;}
@@ -31,7 +24,7 @@ div#footer{clear:left;width:100%}
 .box{text-align:center;border:solid windowtext 1.0pt;}
 .highlight tr.hilight { background: #c9f; } 
 .heading {
-	font-size: 20pt;
+	font-size: medium;
 	margin: 10px 0 10px 0;
 	padding-left: 20pt;
     background: url("/static/forum_thread_title_bg_1x50.png") repeat-x scroll left top transparent;
