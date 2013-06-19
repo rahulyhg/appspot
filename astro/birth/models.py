@@ -1,11 +1,11 @@
-﻿from appengine_django.models import BaseModel
-from google.appengine.ext import db
-from google.appengine.ext.db import djangoforms,GqlQuery
-from django.forms import *
-from astro.location.models import Location 
-from google.appengine.api import users
-import datetime
+﻿from astro.location.models import Location
+from django.forms import Select, ChoiceField, RadioSelect, CharField, SplitDateTimeField
 from django.utils.safestring import mark_safe
+from google.appengine.api import users
+from google.appengine.ext import db
+from google.appengine.ext.db import djangoforms
+from misc.widgets import MyDateTimeWidget
+import datetime
 
 
 class Event(db.Model):
@@ -28,14 +28,14 @@ datetimeformats=[
 ]
 
 class EventForm(djangoforms.ModelForm):
-    country = ChoiceField(widget=widgets.Select({'onChange':"submit()"}))
-    city = ChoiceField()
+    country = ChoiceField(widget=Select({'class':"select_country"}))
+    city = ChoiceField(widget=Select({'class':"select_city"}))
     sexs = ['ස්ත්‍රී','පුරුෂ']
-    sex  = ChoiceField(choices=zip(sexs,sexs),widget=widgets.RadioSelect(), initial=0, required=False)
+    sex  = ChoiceField(choices=zip(sexs,sexs),widget=RadioSelect(), initial=0, required=False)
     sex.widget.renderer.render=lambda self:mark_safe('\n'.join([u'%s' % w for w in self]))
     sex.widget.renderer.safe=False
     name = CharField(label='නම',error_messages={'required': 'නම ඇතුළත් කරන්න'})
-    time = DateTimeField(input_formats=datetimeformats,
+    time = SplitDateTimeField(widget=MyDateTimeWidget(),
                          error_messages={
                                          'required': 'වේලාව ඇතුළත් කරන්න',
                                          'invalid':'වලංගු දිනයක් හා වේලාවක් ඇතුළත් කරන්න (උදා : 1980-2-29 23:59:59)',
