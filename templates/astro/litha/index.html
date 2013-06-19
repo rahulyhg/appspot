@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load charttags %}
+{% load tags %}
+{% block title %}{% block heading %}ලිත{% endblock %}{% endblock %}
+{% block content %}
+<table>
+  <tr>
+    <td>
+      date
+    </td>
+    {% for p in "['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Moon_Node','Moon_S_Node']"|pyeval %}
+    <td align="right"><small>{{p}} </small></td>
+    {% endfor %}
+  </tr>
+  {% for event in data_list %}
+  <tr>
+    <td>
+      {{event.time|date:"Y-m-d"}}
+    </td>
+    {% for p in "['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Moon_Node','Moon_S_Node']"|pyeval %}
+    <td align="right">
+      <small>
+        {{event|attr:p|shadvarga:1|sinhala:"රාශි"}}
+        {{event|attr:p|dd:"30"}}°{{event|attr:p|mm}}'{{event|attr:p|ss}}"
+      </small>
+    </td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
