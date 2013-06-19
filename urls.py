@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import patterns, include
 import re
 
 urlpatterns = patterns(re.sub(r'[^.]*$', "views", __name__),
