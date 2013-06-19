@@ -1,34 +1,27 @@
 # -*- coding:utf-8 -*-
-
-from astro.birth.models import *
-from astro.common.calculator import *
-from django.contrib.auth.decorators import login_required
+from astro.birth.models import Event
+from astro.chart import dasha_prama_acc, dasha_prama, sinhala_planets_short
+from astro.chart.orbs import seiyo, seiyo_trans
+from astro.common.calculator import GetKendraNirayana, bhavas
+from astro.common.ccalculator import deg2rad
+from astro.consts.planets import wheel
+from converters import readUnicode
+from converters.Kaputa import getKaputa
+from datetime import timedelta
+from django.forms import Select
 from django.http import HttpResponse
-from django.shortcuts import render_to_response, redirect
-from django.template import RequestContext
-from django.forms.widgets import Select
+from django.shortcuts import render_to_response
+from django.template import RequestContext, loader
 from google.appengine.api import users
-from google.appengine.api.datastore_errors import BadKeyError
+from math import cos, sin
+from reportlab.lib import colors
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.lib import colors
-from utils import *
-#from converters.readUnicode import readUnicode
-from converters.Kaputa import *
-from converters.readUnicode import *
-from astro.chart import *
-from astro.chart.models import *
-from astro.chart.orbs import *
-from astro.chart.templatetags.charttags import *
-from collections import defaultdict
-from converters.readUnicode import readUnicode
-from converters.Kaputa import *
-import datetime
-import time
+from utils import getHtmlPath
 import canvas
-#from reportlab.pdfgen import canvas
-from astro.consts.planets import *
-import sys
+import datetime
+import re
+
 
 def polar2xy(r,th):
     return r*cos(deg2rad(th)),r*sin(deg2rad(th))
@@ -113,7 +106,6 @@ def getChoices():
     r=[('0','තත්කාලය')]+r
     return r
 YEAR=365.256363
-from django.template import loader
 def simplechart(request):
     #event=calc(key) if key else 
     event,event1=calcGet(request.GET,True)
