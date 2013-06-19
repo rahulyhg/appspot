@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-
 from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
@@ -14,7 +13,7 @@ from google.appengine.api import users
 from models import *
 
 from collections import defaultdict
-from utils import *
+from utils import getHtmlPath,getParentPath
 
 def index(request,admin='',user=None):
     if admin:
@@ -47,7 +46,6 @@ def edit(request,event_key=None,pureEvent=False,ref_key=None):
     return render_to_response(getHtmlPath(__name__,"edit.html"), 
                               {'event': event, 
                                'pureEvent':pureEvent,
-                               #"action":"/astro/birth/%sedit/%s"%(event_key+'/' if event_key else '','event/' if pureEvent else ''),
                                },
                                context_instance=RequestContext(request))
     
