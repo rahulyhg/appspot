@@ -1,0 +1,29 @@
+0-4     self.totalWordCount
+4-8     self.GetSavedIndex(self.BaseWord, bw, csvfile, False) (45)
+9       len(SplitIntoChars(self.m_word))
+10-11   SplitIntoChars(self.m_word)
+12-15   self.count
+16-19   self.xCount
+20      len(self.children) (0)
+21      len(grand) (1)
+22-25   selfindex (8)
+-------------------------------------
+26      len(SplitIntoChars(self.m_word)) (0)
+27-30   self.count (0)
+31-34   self.xCount
+35      len(self.children) (1)
+36      cK
+37-40   self.Trie.GetSavedIndex(cV, None, None, False) (8)
+41      len(grand) (1)
+42-45   self.Trie.GetSavedIndex(g, None, None, False) (8)
+---------------------------------------
+46      len(SplitIntoChars(self.m_word)) (0)
+47-50   self.count (0)
+51-54   self.xCount (0)
+55      len(self.children) (1)
+56      cK
+57-60   self.Trie.GetSavedIndex(cV, None, None, False) (8)
+61      len(grand) (1)
+62-65   self.Trie.GetSavedIndex(g, None, None, False) (8)
+
+
