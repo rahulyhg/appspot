@@ -7,35 +7,17 @@ Created on Dec 30, 2010
 from django.http import HttpResponse
 
 from django.shortcuts import render_to_response
-from utils import *
-
-from google.appengine.api import users
+from utils import getHtmlPath
 
 import logging
+from django.template.context import RequestContext
 
 logger = logging.getLogger(__name__)
 
 def index(request):
-    return render_to_response(getHtmlPath(__name__,'base.html'))
-
-#class MyFile(file):
-#    def __init__(self, pDownloadFile, pUser, *args, **kwargs):
-#       self.downloadFile = pDownloadFile
-#       self.user = pUser
-#       lFilename = pDownloadFile
-#       #print lFilename
-#       super(MyFile, self).__init__(lFilename, *args, **kwargs)
-#       logger.info("%s started downloading SriShell")
-#
-#    def close(self):
-#       super(MyFile, self).close()
-#       logger.info("%s ended downloading SriShell")
-##       lDownloadLog = DownloadLog()
-##       lDownloadLog.filename = self.downloadFile.file.name
-##       lDownloadLog.lastChangedBy = self.user
-##       lDownloadLog.owner = self.user
-##       lDownloadLog.save()
-
+    return render_to_response(
+         getHtmlPath(__name__,'base.html'), 
+         context_instance=RequestContext(request))
 
 def srishell_download(request):
     """
