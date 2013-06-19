@@ -1,5 +1,4 @@
-﻿from appengine_django.models import BaseModel
-from google.appengine.ext import db
+﻿from google.appengine.ext import db
 from google.appengine.ext.db import djangoforms
 from django.forms import *
 import re
