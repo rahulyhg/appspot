@@ -1,0 +1,19 @@
+#id_menu2{
+	z-index: 99; 
+	width: 100px;
+	position:absolute;
+	left: 100px;
+	top: 100px;
+	border: 1px solid #000000;
+	background-color: #FFFFFF;
+}
+.menu_item {
+	z-index:100;
+	width:100%;
+}
+.menu_item_in {
+	padding-left: 10px;
+}
+.menu_item_hover {
+	background-color : #00FFFF;
+}
