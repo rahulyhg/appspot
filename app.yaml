@@ -1,6 +1,6 @@
 application: sandeva
-version: 16
-runtime: python27
+version: 17
+runtime: python
 api_version: 1
 threadsafe: no
 
@@ -10,6 +10,9 @@ threadsafe: no
 
 #builtins:
 #- django_wsgi: on
+
+#env_variables:
+#  DJANGO_SETTINGS_MODULE: 'settings'
 
 handlers:
 - url: /static
@@ -21,6 +24,10 @@ handlers:
 - url: /srishell/download/.*
   script: blob.py
 
+- url: /(google827b06f69a5ea5a6\.html)
+  static_files: static/\1
+  upload: static/(.*)
+  
 - url: /.*
   script: main.py
 
