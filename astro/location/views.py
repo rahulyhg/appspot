@@ -10,6 +10,8 @@ from collections import defaultdict
 from utils import * 
 
 from django import forms
+from django.utils import simplejson
+from django.http import HttpResponse
 
 def to_int(s):
     return len(s) and int(s) or 0
@@ -45,4 +47,8 @@ def edit(request,key=None):
     return render_to_response('astro/location/edit.html', {'location': loc},
                                context_instance=RequestContext(request))
     
-    
+def ajax_cities(request):
+    country = request.GET.get('country')
+    cities = Location.all().filter('country =',country).fetch(1000)
+    return HttpResponse(simplejson.dumps(dict([(str(loc.key()),loc.city) for loc in cities]))) 
+
