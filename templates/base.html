@@ -4,10 +4,49 @@
 <head>
 <title>{% block title %}ශ්‍රී වෙබ් අඩවිය{% endblock %}</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="/static/styles.css" />
+	<link rel="stylesheet" type="text/css" href="/static/styles.css" />
+	<link rel="stylesheet" href="/static/js/themes/base/jquery.ui.all.css" />
+	<script src="/static/js/jquery-1.7.2.js"></script>
+	<script src="/static/js/ui/jquery.ui.core.js"></script>
+	<script src="/static/js/ui/jquery.ui.widget.js"></script>
+	<script src="/static/js/ui/jquery.ui.datepicker.js"></script>
+	<script src="/static/js/ui/i18n/jquery.ui.datepicker-si.js"></script>
+	<script src="/static/js/srishell.js"></script>
+	<link href="/static/js/srishell.css" rel="stylesheet" />
+	<script>
+	 $(document).ready(function() {
+		$( ".datepicker" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: "-100:+10"
+		});
+		$(".select_country").change(function(){
+			$.getJSON("{% url ajax_cities %}",
+				{country : $(this).val()},
+        		function(data){
+        			$(".select_city").empty();
+					$.each(data, function(key, value) {
+					  $(".select_city").append($("<option></option>")
+					     .attr("value", key).text(value));
+					});
+        		}
+        	);
+		});
+	});
+	</script>
 </head>
 <body>
 <div id="container">
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
 	<div id="header">
 		<div id="header_head">
 			<h1><a href="http://sandeva.appspot.com/"><i>ශ්‍රී වෙබ් අඩවිය</i></a></h1>
@@ -31,6 +70,18 @@
 	<div id="content">
       <p><strong>{% block heading %}ශ්‍රී ෂෙල් සිංහල මෘදුකාංගය {% endblock %}</strong></p>
       {% block content %}
+      <p>ශ්‍රී ෂෙල් Online</p>
+      <p>
+		<div id="id_main_div" contenteditable="true" class="SriShell_div" style="height: 200px;width:90%;border:1px solid black;margin-left: 40px;">
+		methana taip karanna.<br>
+		</div>
+		<script>
+		$(document).ready(function() {
+		 	$("#id_main_div").delay(10000,function(){$("#id_main_div").trigger("keyup");});
+		});
+		</script>
+		<div id='id_menu2' style="display: none"></div>
+	  </p>
       <p>How to Install SriShell</p>
       <ol>
       	<li>
@@ -41,11 +92,8 @@
       	<li><a href="/srishell/download/">Download SriShell</a></li>
       	<li><a target="_blank" href="/static/InstallSriShell.htm">Install and run SriShell</a></li>
       </ol>
-      <!-- 
-      <p>සිංහල අකුරු ලිවීමට <i>ශ්‍රී ෂෙල්</i> මෘදුකාංගය භාවිතා කරන්න. පහත පෙනෙන ඕනෑම වෙබ් අඩවියකින් <i>ශ්‍රී ෂෙල්</i> ලබා ගත හැක.</p>
-      <p>ශ්‍රී ෂෙල් ක්‍රියාත්මක කරවීමට "<b>F8</b>" යතුර භාවිතා කරන්න.</p>
-       -->
       {% endblock %}
+		<div class="fb-like" data-href="http://sandeva.appspot.com/" data-send="true" data-width="450" data-show-faces="true"></div>
     </div>
   </div>
   <div id="footer">
